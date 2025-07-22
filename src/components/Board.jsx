@@ -1,16 +1,18 @@
 /*
-    square and board duitai component. components are nothing else but a function. but board holo default component.
+    part 2
 */
+import { useState } from "react";
 
-function Square({ value }) {
+function Square() {
+  const [value, setValue] = useState(null);
+
   function handleClick() {
-    console.log(value);
+    setValue("X");
   }
 
   return (
     <button
       className="bg-white border border-gray-400 h-12 w-12 m-1 leading-9 text-lg"
-      //   onClick={() => console.log(value)}
       onClick={handleClick}
     >
       {value}
@@ -21,22 +23,23 @@ function Square({ value }) {
 function Board() {
   return (
     <>
-      <div>
-        <Square value={1} />
-        <Square value={2} />
-        <Square value={3} />
+      {/* allignment fix korar jonne protita div e flex dewa hoise */}
+      <div className="flex">
+        <Square />
+        <Square />
+        <Square />
       </div>
 
-      <div>
-        <Square value={4} />
-        <Square value={5} />
-        <Square value={6} />
+      <div className="flex">
+        <Square />
+        <Square />
+        <Square />
       </div>
 
-      <div>
-        <Square value={7} />
-        <Square value={8} />
-        <Square value={9} />
+      <div className="flex">
+        <Square />
+        <Square />
+        <Square />
       </div>
     </>
   );
