@@ -3,6 +3,7 @@
 */
 
 function Square({ value }) {
+  // function er kaj part 2 te. part 1 e just basic dekhano hoise
   function handleClick() {
     console.log(value);
   }
