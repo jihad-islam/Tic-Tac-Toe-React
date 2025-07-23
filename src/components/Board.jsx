@@ -1,6 +1,7 @@
 /*
-    1.version 3: ekhane lifting the state up kora hobe.
-    2. version 2 te Square component e state chilo and Square component theke state er maddhome amra square e ekta static value assign korechilam. but amra condition er maddhome value assign korte chai. first e 'X' thakle erpor 'O' hobe. so amake track rakhte hobe aager square e value ki chilo. ei track ta Square component rekhe lav nai, track rakha lagbe Square component er parent Board component e. tai Square component theke state ta Board component e lifting up korte hobe. 
+    1.version 4
+    2. v3 te spread operator use korechilam. but spread operator main array kei modify kore fele. history er jonne amar main array change kora jabe na. so v4 e slice diye new array create korechi. and new array er change setSquares diye update korle react easily detect korte pare and re-render korte pare.
+    
 */
 import { useState } from "react";
 
@@ -19,9 +20,9 @@ function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(index) {
-    squares[index] = "X";
-    // setSquares(squares);
-    setSquares([...squares]);
+    const newSquares = squares.slice(); // Create a copy of the squares array
+    newSquares[index] = "X";
+    setSquares(newSquares);
   }
 
   return (
