@@ -1,11 +1,12 @@
 /*
     1. aager version e amra  Board component theke Square component e props pass korechilam
     2. but ei version e amra useState hook use kore value set kortesi, tai props pass korar dorkar nai.
+    3. this is jihad
 */
 import { useState } from "react";
 
 function Square() {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(null);
 
   function handleClick() {
     setValue("X");
