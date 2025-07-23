@@ -1,7 +1,5 @@
 /*
-    1. aager version e amra  Board component theke Square component e props pass korechilam
-    2. but ei version e amra useState hook use kore value set kortesi, tai props pass korar dorkar nai.
-    3. this is jihad
+    1. this is version 3: ekhane lifting the state up kora hobe.
 */
 import { useState } from "react";
 
