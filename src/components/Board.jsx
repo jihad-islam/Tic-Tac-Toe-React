@@ -1,9 +1,8 @@
 /*
-    1.version 3: ekhane lifting the state up kora hobe.
-    2. version 2 te Square component e state chilo and Square component theke state er maddhome amra square e ekta static value assign korechilam. but amra condition er maddhome value assign korte chai. first e 'X' thakle erpor 'O' hobe. so amake track rakhte hobe aager square e value ki chilo. ei track ta Square component rekhe lav nai, track rakha lagbe Square component er parent Board component e. tai Square component theke state ta Board component e lifting up korte hobe. 
+    1.version 4
+    2. v3 te spread operator use korechilam. but spread operator main array kei modify kore fele. history feature er jonne amar main array change kora jabe na. so v4 e slice diye new array create korechi. and new array er change setSquares diye update korle react easily detect korte pare and re-render korte pare.
 
-    3. bojhar shubidarthe only ekta square niye kaj korsi.
-    4. for concept see src/components/concept.md 
+    3. for clear the concept see components/concepts.md
 */
 import { useState } from "react";
 
@@ -19,18 +18,20 @@ function Square({ value, onSquareClick }) {
 }
 
 function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null)); // state hishebe array newa hoise
+  const [squares, setSquares] = useState(Array(9).fill(null));
 
-  function handleClick() {
-    squares[0] = "X";
-    // setSquares(squares); // state update korle react re-render hoy.state hishebe array or object niye kaj korle ektu jhamela hoy. amra jokhon array or object er kono value change or update kori, tokhon react render kore aager array and changed array compare kore dekhe. same array or object diye state update korle react bujhte pare na je state change hoyeche. so react render ow kore na.
-    setSquares([...squares]); // spread operator er maddhome notun array create kore setSquares diye state update kora hoyeche.ekhn react re-render er shomoy state er change identify korte parbe.
+  function handleClick(index) {
+    const newSquares = squares.slice(); // Create a copy of the squares array
+    newSquares[index] = "X";
+    setSquares(newSquares);
   }
 
   return (
     <>
       <div className="flex">
-        <Square value={squares[0]} onSquareClick={handleClick} />
+        {/* <Square value={squares[0]} onSquareClick={handleClick(0)} /> */}{" "}
+        {/*ekhane handleClick function ke prop hishebe pass korte hobe. function call korle hobe na.but jokhon handleClick() ke evabe first bracket diye likha hoy tokhon eta function call hoye jay. and react render korar aagei function ta call kore dey, tai react too many re-renders er error dekhay.  */}
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} />
         <Square value={squares[2]} />
       </div>
