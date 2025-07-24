@@ -1,5 +1,5 @@
 /*
-    1.version 5
+    1.version 6
     2. ei version e amra logic apply kore 'X' and 'O' value assign korbo.
 */
 import { useState } from "react";
