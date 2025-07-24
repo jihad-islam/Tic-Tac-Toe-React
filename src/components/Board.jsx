@@ -1,6 +1,7 @@
 /*
     1.version 6
-    2. ei version e amra logic apply kore 'X' and 'O' value assign korbo.
+    2. ei version e amra winner er logic apply korbo.
+    3. winner er logic ta holo 'X' or 'O' jodi kono row, column, or diagonal e same value thake tahole winner hobe.
 */
 import { useState } from "react";
 
@@ -21,19 +22,18 @@ function Board() {
 
   function handleClick(index) {
     if (squares[index]) {
-      return; // Ignore click if square is already filled
-    } else {
-      const newSquares = squares.slice();
-
-      if (isXNext) {
-        newSquares[index] = "X";
-      } else {
-        newSquares[index] = "O";
-      }
-
-      setIsXNext(!isXNext);
-      setSquares(newSquares);
+      return;
     }
+    const newSquares = squares.slice();
+
+    if (isXNext) {
+      newSquares[index] = "X";
+    } else {
+      newSquares[index] = "O";
+    }
+
+    setIsXNext(!isXNext);
+    setSquares(newSquares);
   }
 
   return (
