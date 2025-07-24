@@ -1,8 +1,6 @@
 /*
-    1.version 4
-    2. v3 te spread operator use korechilam. but spread operator main array kei modify kore fele. history feature er jonne amar main array change kora jabe na. so v4 e slice diye new array create korechi. and new array er change setSquares diye update korle react easily detect korte pare and re-render korte pare.
-
-    3. for clear the concept see components/concepts.md
+    1.version 5
+    2. ei version e amra logic apply kore 'X' and 'O' value assign korbo.
 */
 import { useState } from "react";
 
@@ -19,33 +17,43 @@ function Square({ value, onSquareClick }) {
 
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [isXNext, setIsXNext] = useState(true);
 
   function handleClick(index) {
-    const newSquares = squares.slice(); // Create a copy of the squares array
-    newSquares[index] = "X";
-    setSquares(newSquares);
+    if (squares[index]) {
+      return; // Ignore click if square is already filled
+    } else {
+      const newSquares = squares.slice();
+
+      if (isXNext) {
+        newSquares[index] = "X";
+      } else {
+        newSquares[index] = "O";
+      }
+
+      setIsXNext(!isXNext);
+      setSquares(newSquares);
+    }
   }
 
   return (
     <>
       <div className="flex">
-        {/* <Square value={squares[0]} onSquareClick={handleClick(0)} /> */}{" "}
-        {/*ekhane handleClick function ke prop hishebe pass korte hobe. function call korle hobe na.but jokhon handleClick() ke evabe first bracket diye likha hoy tokhon eta function call hoye jay. and react render korar aagei function ta call kore dey, tai react too many re-renders er error dekhay.  */}
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} />
-        <Square value={squares[2]} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
       </div>
 
       <div className="flex">
-        <Square value={squares[3]} />
-        <Square value={squares[4]} />
-        <Square value={squares[5]} />
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
       </div>
 
       <div className="flex">
-        <Square value={squares[6]} />
-        <Square value={squares[7]} />
-        <Square value={squares[8]} />
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
   );
